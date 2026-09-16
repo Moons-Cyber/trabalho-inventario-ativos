@@ -18,4 +18,13 @@ ativos[101] = {
     "vulnerabilidades":[]
 }
 
-print(ativos)
+while True:
+    try:
+        id_ativo = int(input("Digite o ID do ativo: "))
+        if id_ativo in ativos:
+            print("Esse ID já está cadastrado")
+            continue
+
+        break
+    except ValueError:
+        print("O ID deve ser um número inteiro.")
