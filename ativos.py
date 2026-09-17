@@ -67,3 +67,18 @@ while True:
         print("Tipo ativo inválido")
 
         
+while True:
+    try:
+        print("\n---Menu Ativos TI---")
+        print("1 - Notebook")
+        print("2 - Servidor")
+        print("3 - Roteador")
+        print("4 - Estação de trabalho")
+
+        opcao = int(input("Digite uma opção: "))
+        if opcao.split() == "":
+            print("Digite uma opção válida!")
+            continue
+        break
+    except ValueError:
+        print("Digite uma opção válida!")
