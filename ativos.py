@@ -28,3 +28,42 @@ while True:
         break
     except ValueError:
         print("O ID deve ser um número inteiro.")
+
+
+while True: 
+    nome = input("Digite o nome ou hostname do ativo: ")
+
+    if nome.strip() == "":
+        print("A entrada não pode estar vazia!")
+        continue
+    break
+
+while True:
+    responsavel = input("Digite o responsável pelo ativo: ")
+
+    if responsavel.strip() == "":
+        print("A entrada não pode estar vazia!")
+        continue
+    break
+
+
+while True:
+    setor = input("Digite o nome do setor/localização do ativo: ")
+    if setor.strip() == "":
+        print("A entrada não pode estar vazia!")
+        continue
+    break
+
+
+while True:
+    try:
+        codigo_tipo = int(input("Digite o tipo do ativo: "))
+
+        tipo_ativo = TipoAtivo(codigo_tipo)
+
+        print(f"Ativo encontrado {tipo_ativo}")
+        break
+    except ValueError:
+        print("Tipo ativo inválido")
+
+        
