@@ -10,75 +10,74 @@ class TipoAtivo(Enum):
 
 ativos = {}
 
-ativos[101] = {
-    "nome": "Notebook Dell XPS 13",
-    "tipo": TipoAtivo.NOTEBOOK,
-    "setor": "TI",
-    "responsavel": "João Silva",
-    "vulnerabilidades":[]
-}
 
-while True:
-    try:
-        id_ativo = int(input("Digite o ID do ativo: "))
-        if id_ativo in ativos:
-            print("Esse ID já está cadastrado")
+def cadastrar_ativo():
+    while True:
+        try:
+            id_ativo = int(input("Digite o ID do ativo: "))
+            if id_ativo in ativos:
+                print("Esse ID já está cadastrado")
+                continue
+
+            break
+        except ValueError:
+            print("O ID deve ser um número inteiro.")
+
+
+    while True: 
+        nome = input("Digite o nome ou hostname do ativo: ")
+
+        if nome.strip() == "":
+            print("A entrada não pode estar vazia!")
             continue
-
         break
-    except ValueError:
-        print("O ID deve ser um número inteiro.")
 
+    while True:
+        responsavel = input("Digite o responsável pelo ativo: ")
 
-while True: 
-    nome = input("Digite o nome ou hostname do ativo: ")
-
-    if nome.strip() == "":
-        print("A entrada não pode estar vazia!")
-        continue
-    break
-
-while True:
-    responsavel = input("Digite o responsável pelo ativo: ")
-
-    if responsavel.strip() == "":
-        print("A entrada não pode estar vazia!")
-        continue
-    break
-
-
-while True:
-    setor = input("Digite o nome do setor/localização do ativo: ")
-    if setor.strip() == "":
-        print("A entrada não pode estar vazia!")
-        continue
-    break
-
-
-while True:
-    try:
-        codigo_tipo = int(input("Digite o tipo do ativo: "))
-
-        tipo_ativo = TipoAtivo(codigo_tipo)
-
-        print(f"Ativo encontrado {tipo_ativo}")
+        if responsavel.strip() == "":
+            print("A entrada não pode estar vazia!")
+            continue
         break
-    except ValueError:
-        print("Tipo ativo inválido")
+
+
+    while True:
+        setor = input("Digite o nome do setor/localização do ativo: ")
+        if setor.strip() == "":
+            print("A entrada não pode estar vazia!")
+            continue
+        break
+
+
+    while True:
+        try:
+            print("\n---Menu Ativos TI---")
+            print("1 - Notebook")
+            print("2 - Servidor")
+            print("3 - Roteador")
+            print("4 - Estação de trabalho")
+
+            codigo_tipo = int(input("\nDigite o tipo do ativo: "))
+
+            tipo_ativo = TipoAtivo(codigo_tipo)
+
+            print(f"Tipo selecionado: {tipo_ativo}")
+            break
+        except ValueError:
+            print("Tipo ativo inválido!")
 
         
-while True:
-    try:
-        print("\n---Menu Ativos TI---")
-        print("1 - Notebook")
-        print("2 - Servidor")
-        print("3 - Roteador")
-        print("4 - Estação de trabalho")
+    ativos[id_ativo] = {
+        "nome": nome,
+        "tipo_ativo": tipo_ativo,
+        "setor": setor,
+        "responsavel": responsavel,
+        "vulnerabilidades": []
 
-        opcao = int(input("Digite uma opção: "))
-        if opcao.split() == "":
-            print("Digite uma opção válida!")
-            continue
-        break
-    except ValueError:
-        print("Digite uma opção válida!")
+    }
+
+    print("\nAtivo cadastrado com sucesso!")
+    print(ativos)
+
+
+cadastrar_ativo()
