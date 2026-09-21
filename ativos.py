@@ -75,19 +75,47 @@ def cadastrar_ativo():
         "vulnerabilidades": []
 
     }
+
+        
 def consultar_ativo():
     while True:
         try:
             id_ativo = int(input("Digite o ID do ativo: "))
 
             if id_ativo in ativos:
-                print(f"Ativo encontrado {ativos[id_ativo]}")
-                break
+                print("\n======ATIVO ENCONTRADO======")
+                print("ID:", id_ativo)
+                print("Nome:", ativos[id_ativo]["nome"])
+                print("Tipo:", ativos[id_ativo]["tipo_ativo"].name)
+                print("Setor:", ativos[id_ativo]["setor"])
+                print("Responsável:", ativos[id_ativo]["responsavel"])
+                print("Vulnerabilidades:", ativos[id_ativo]["vulnerabilidades"])
+                break                    
             else:
                 print("Ativo não encontrado.")
         except ValueError:
             print("O ID deve ser um número inteiro!")
-   
+
+def consultar_por_nome():
+    nome_busca = input("Digite o nome ou hostname do ativo: ")
+    encontrado = False 
+
+    for id_ativo, ativo in ativos.items():
+        if ativo["nome"].lower() == nome_busca.lower():
+            print("\n======ATIVO ENCONTRADO======")
+            print("ID:", id_ativo)
+            print("Nome:", ativo["nome"])
+            print("Tipo:", ativo["tipo_ativo"].name)
+            print("Setor:", ativo["setor"])
+            print("Responsável:", ativo["responsavel"])
+            print("Vulnerabilidades:", ativo["vulnerabilidades"])
+            encontrado = True
+            break
+        if not encontrado:
+            print("Ativo não encontrado.")
+        
+        
+                       
 
 def menu_principal():
     while True:
@@ -128,3 +156,4 @@ def menu_principal():
 
 
 menu_principal()
+
