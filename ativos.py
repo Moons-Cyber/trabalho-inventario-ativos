@@ -322,6 +322,35 @@ def cadastrar_vulnerabilidade():
     elif severidade == Severidade.CRITICA:
         print("A vulnerabilidade é crítica. Ações corretivas imediatas são necessárias para mitigar o risco.")
 
+def consultar_vulnerabilidade():
+    while True:
+        try:
+            id_ativo = int(input("Digite o ID do ativo: "))
+
+            if id_ativo not in ativos:
+                print("Ativo não encontrado")
+                continue
+
+            break
+
+        except ValueError:
+            print("O ID deve ser um número inteiro!")
+    
+    vulnerabilidades = ativos[id_ativo]["vulnerabilidades"]
+
+    if not vulnerabilidades:
+        print("Esse ativo não possui vulnerabilidades registradas.")
+
+    else:
+        print("\n====== VULNERABILIDADES ======")
+
+        for vulnerabilidade in vulnerabilidades:
+            print("Descrição:", vulnerabilidade["descricao"])
+            print("Categoria:", vulnerabilidade["categoria"])
+            print("Severidade:", vulnerabilidade["severidade"].name)
+            print("Status:", vulnerabilidade["status_tratamento"].name)
+            print("-------------------------------------")
+        
 def menu_principal():
     while True:
         print("\n================================")
@@ -372,7 +401,7 @@ def menu_principal():
                 cadastrar_vulnerabilidade()
 
             elif opcao == 6:
-                print("Função ainda não implementada")  
+                consultar_vulnerabilidade()  
 
             elif opcao == 7:
                 break
