@@ -75,7 +75,6 @@ def cadastrar_ativo():
         "vulnerabilidades": []
 
     }
-
         
 def consultar_ativo():
     while True:
@@ -197,7 +196,34 @@ def atualizar_ativo():
 
         except ValueError:
             print("O ID deve ser um número inteiro.")        
-                       
+
+def remover_ativo():
+    while True:
+        try:
+            id_ativo = int(input("Digite o ID do ativo que deseja remover: "))
+
+            if id_ativo not in ativos:
+                print("Ativo não encontrado.")
+                continue
+
+            while True:
+                confirmacao = input(f"Tem certeza que deseja remover o ativo {ativos[id_ativo]['nome']}? (s/n): ").strip().lower()
+
+                if confirmacao == 's':
+                    del ativos[id_ativo]
+                    print("Ativo removido com sucesso!")
+                    return  
+
+                elif confirmacao == 'n':
+                    print("Remoção cancelada.")
+                    return
+
+                else:
+                    print("Opção inválida. Digite 's' para sim ou 'n' para não.")
+
+
+        except ValueError:
+            print("O ID deve ser um número inteiro.")                       
 
 def menu_principal():
     while True:
@@ -243,7 +269,7 @@ def menu_principal():
                 atualizar_ativo()
 
             elif opcao == 4:
-                print("Função ainda não implementada")
+                remover_ativo()
 
             elif opcao == 5:
                 print("Função ainda não implementada")  
