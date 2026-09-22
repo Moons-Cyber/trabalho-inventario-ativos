@@ -111,8 +111,8 @@ def consultar_por_nome():
             print("Vulnerabilidades:", ativo["vulnerabilidades"])
             encontrado = True
             break
-        if not encontrado:
-            print("Ativo não encontrado.")
+    if not encontrado:
+        print("Ativo não encontrado.")
         
         
                        
@@ -135,16 +135,40 @@ def menu_principal():
 
             if opcao == 1:
                 cadastrar_ativo()
+
             elif opcao == 2:
-                consultar_ativo()
+                while True:
+                    print("\n---Menu Consulta Ativos---")
+                    print("\n1 - Consultar por ID")
+                    print("2 - Consultar por nome/hostname")
+                    print("3 - Voltar ao menu principal")
+
+                    try:
+                        sub_opcao = int(input("\nDigite uma opção: "))
+
+                        if sub_opcao == 1:
+                            consultar_ativo()
+                        elif sub_opcao == 2:
+                            consultar_por_nome()
+                        elif sub_opcao == 3:
+                            break
+                        else:
+                            print("Digite uma opção válida")
+                    except ValueError:
+                        print("Digite uma opção válida: ")
+
             elif opcao == 3:
                 print("Função ainda não implementada")
+
             elif opcao == 4:
                 print("Função ainda não implementada")
+
             elif opcao == 5:
                 print("Função ainda não implementada")  
+
             elif opcao == 6:
                 print("Função ainda não implementada")  
+
             elif opcao == 7:
                 break
             else:
