@@ -114,7 +114,89 @@ def consultar_por_nome():
     if not encontrado:
         print("Ativo não encontrado.")
         
-        
+def atualizar_ativo():
+    while True:
+        try:
+            id_ativo = int(input("Digite o ID do ativo que deseja atualizar: "))
+
+            if id_ativo not in ativos:
+                print("Ativo não encontrado.")
+                continue
+
+            ativo = ativos[id_ativo]
+
+            while True:
+                print("\n====== ATUALIZAR ATIVO ======")
+                print("1 - Atualizar nome/hostname")
+                print("2 - Atualizar tipo de ativo")
+                print("3 - Atualizar setor/localização")
+                print("4 - Atualizar responsável")
+                print("5 - Voltar ao menu principal")
+
+                try:
+                    sub_opcao = int(input("\nDigite uma opção: "))
+                except ValueError:
+                    print("Digite uma opção válida.")
+                    continue
+
+                if sub_opcao == 1:
+                    novo_nome = input("Digite o novo nome/hostname do ativo: ")
+
+                    if novo_nome.strip() == "":
+                        print("A entrada não pode estar vazia!")
+                        continue
+
+                    ativo["nome"] = novo_nome
+                    print("Nome/hostname atualizado com sucesso!")
+
+                elif sub_opcao == 2:
+                    while True:
+                        try:
+                            print("\n--- Menu Ativos TI ---")
+                            print("1 - Notebook")
+                            print("2 - Servidor")
+                            print("3 - Roteador")
+                            print("4 - Estação de trabalho")
+
+                            codigo_tipo = int(input("\nDigite o novo tipo do ativo: "))
+
+                            tipo_ativo = TipoAtivo(codigo_tipo)
+
+                            ativo["tipo_ativo"] = tipo_ativo
+                            print("Tipo atualizado com sucesso!")
+                            break
+
+                        except ValueError:
+                            print("Tipo de ativo inválido!")
+
+                elif sub_opcao == 3:
+                    novo_setor = input("Digite o novo setor/localização do ativo: ")
+
+                    if novo_setor.strip() == "":
+                        print("A entrada não pode estar vazia!")
+                        continue
+
+                    ativo["setor"] = novo_setor
+                    print("Setor/localização atualizado com sucesso!")
+
+                elif sub_opcao == 4:
+                    novo_responsavel = input( "Digite o novo responsável pelo ativo: ")
+
+                    if novo_responsavel.strip() == "":
+                        print("A entrada não pode estar vazia!")
+                        continue
+
+                    ativo["responsavel"] = novo_responsavel
+                    print("Responsável atualizado com sucesso!")
+
+                elif sub_opcao == 5:
+                    return  # Voltar ao menu principal
+
+                else:
+                    print("Digite uma opção válida.")
+
+        except ValueError:
+            print("O ID deve ser um número inteiro.")        
                        
 
 def menu_principal():
@@ -158,7 +240,7 @@ def menu_principal():
                         print("Digite uma opção válida: ")
 
             elif opcao == 3:
-                print("Função ainda não implementada")
+                atualizar_ativo()
 
             elif opcao == 4:
                 print("Função ainda não implementada")
