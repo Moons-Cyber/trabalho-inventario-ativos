@@ -1,5 +1,6 @@
 #Sistema de inventario de Segurança
 from enum import Enum
+import json
 
 #Definição da classe TipoAtivo que herda de Enum para representar os tipos de ativos disponíveis no sistema de inventário de segurança. Cada tipo de ativo é associado a um valor inteiro único.
 class TipoAtivo(Enum):
@@ -409,9 +410,39 @@ def menu_principal():
                 print("Digite uma opção válida")
         except ValueError:
             print("Digite uma opção válida: ")
-        
+
+def preparar_dados():
+    dados = {}
+
+    for id_ativo, ativo in ativos.items():
+        vulnerabilidades = []
+
+
+        for vulnerabilidade in ativo["vulnerabilidade"]:
+            vulnerabilidade.append({
+                "descricao": vulnerabilidade["descricao"],
+                "categoria": vulnerabilidade["categoria"],
+                "severidade": vulnerabilidade["severidade"].value,
+                "status_tratamento": vulnerabilidade["status_tratamento"].value
+
+            })
+
+        dados[id_ativo] = {
+            "nome": ativo["nome"],
+            "tipo_ativo": ativo["tipo_ativo"].value,
+            "setor": ativo["setor"],
+            "responsavel": ativo["responsavel"],
+            "vulnerabilidades": []
+        }
+
+    return dados
+
+def salvar_dados():
+    with open("ativos.json", "w", encoding="utf-8") as arquivos:
+        json.dump(ativos, arquivos, indent=4)
 
 
 
+salvar_dados()
 menu_principal()
 
