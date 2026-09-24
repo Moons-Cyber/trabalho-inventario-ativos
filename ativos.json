@@ -1,0 +1,30 @@
+{
+    "101": {
+        "nome": "Servidor",
+        "tipo_ativo": 2,
+        "setor": "Setor 1",
+        "responsavel": "Gabriel",
+        "vulnerabilidades": []
+    },
+    "103": {
+        "nome": "Notebook",
+        "tipo_ativo": 1,
+        "setor": "Setor 0",
+        "responsavel": "Gabriel",
+        "vulnerabilidades": [
+            {
+                "descricao": "Usuario com senha muito fraca",
+                "categoria": "Senha fraca",
+                "severidade": 2,
+                "status_tratamento": 1
+            }
+        ]
+    },
+    "1": {
+        "nome": "Roteador",
+        "tipo_ativo": 3,
+        "setor": "Setor de TI",
+        "responsavel": "Felipe",
+        "vulnerabilidades": []
+    }
+}
