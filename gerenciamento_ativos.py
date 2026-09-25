@@ -7,6 +7,7 @@ def cadastrar_ativo():
     while True:
         try:
             id_ativo = int(input("Digite o ID do ativo: "))
+            # O ID é usado como chave do dicionário, por isso não pode ser duplicado.
             if id_ativo in ativos:
                 print("Esse ID já está cadastrado")
                 continue
@@ -50,7 +51,8 @@ def cadastrar_ativo():
             print("4 - Estação de trabalho")
 
             codigo_tipo = int(input("\nDigite o tipo do ativo: "))
-
+            
+            # Converte o código informado pelo usuário em um membro do Enum.
             tipo_ativo = TipoAtivo(codigo_tipo)
 
             print(f"Tipo selecionado: {tipo_ativo}")
